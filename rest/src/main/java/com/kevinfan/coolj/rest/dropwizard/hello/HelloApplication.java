@@ -1,0 +1,34 @@
+package com.kevinfan.coolj.rest.dropwizard.hello;
+
+import io.dropwizard.Application;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
+
+/**
+ * Created by kevinjom on 14-9-12.
+ */
+public class HelloApplication extends Application<HelloConfiguration> {
+    @Override
+    public void initialize(Bootstrap<HelloConfiguration> bootstrap) {
+
+    }
+
+    @Override
+    public void run(HelloConfiguration configuration, Environment environment) throws Exception {
+        //register resources
+        HelloResource helloResource = new HelloResource(configuration.getTemplate());
+        environment.jersey().register(helloResource);
+
+        //register health checks
+        environment.healthChecks().register("templateCheck", new TemplateHealthCheck(configuration.getTemplate()));
+    }
+
+    @Override
+    public String getName() {
+        return "Hello Service!";
+    }
+
+    public static void main(String[] args) throws Exception {
+        new HelloApplication().run(args);
+    }
+}
