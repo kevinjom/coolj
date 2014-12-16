@@ -1,8 +1,12 @@
 package com.kevinfan.coolj.rest.dropwizard.hello;
 
 import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
+import io.dropwizard.cli.Command;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import net.sourceforge.argparse4j.inf.Namespace;
+import net.sourceforge.argparse4j.inf.Subparser;
 
 /**
  * Created by kevinjom on 14-9-12.
@@ -10,7 +14,8 @@ import io.dropwizard.setup.Environment;
 public class HelloApplication extends Application<HelloConfiguration> {
     @Override
     public void initialize(Bootstrap<HelloConfiguration> bootstrap) {
-
+        bootstrap.addBundle(new AssetsBundle());
+        bootstrap.addCommand(new ListResourcesCommand(this, "ls", "list resources"));
     }
 
     @Override
@@ -18,6 +23,9 @@ public class HelloApplication extends Application<HelloConfiguration> {
         //register resources
         HelloResource helloResource = new HelloResource(configuration.getTemplate());
         environment.jersey().register(helloResource);
+
+        environment.jersey().register(new UserResource());
+
 
         //register health checks
         environment.healthChecks().register("templateCheck", new TemplateHealthCheck(configuration.getTemplate()));

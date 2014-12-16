@@ -1,0 +1,4 @@
+dependencies {
+    compile libs.netty
+    compile libs.groovy
+}

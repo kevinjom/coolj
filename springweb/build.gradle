@@ -1,0 +1,7 @@
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+dependencies {
+    compile libs.servlet
+    compile libs.spring_mvc
+}
