@@ -22,8 +22,8 @@ buildscript {
 
 subprojects { proj ->
     apply plugin: 'idea'
-    apply plugin: 'idea'
-        apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'java'
 
 
     group = 'com.kevinfan.coolj'

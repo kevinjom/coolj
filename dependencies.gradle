@@ -14,6 +14,7 @@ ext {
             log4j            : 'log4j:log4j:1.2.16',
             sfl4j_log4j      : 'org.slf4j:slf4j-log4j12:1.6.1',
             guava            : 'com.google.guava:guava:14.0.1',
+            junit_benchmarks : 'com.carrotsearch:junit-benchmarks:0.7.2',
 
             //specific libs
             spring_context   : "org.springframework:spring-context:${springVersion}",
